@@ -14,6 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfiguration {
     /**
      * REST API 명세 문서화 : Swagger
+     * http://localhost:8080/swagger-ui.html
      */
 
     @Bean

@@ -1,6 +1,8 @@
 package com.springboot.guide.controller;
 
 import com.springboot.guide.dto.MemberDto;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -36,8 +38,14 @@ public class GetController {
     /**
      * @RequestParam : query string 사용
      */
+    @ApiOperation(value = "GET 메소드 예제", notes = "@RequestParam 활용한 GET Method")
     @GetMapping("/request1")
-    public String getRequestParam(@RequestParam String name, @RequestParam String email){
+    public String getRequestParam(
+            @ApiParam(value = "이름", required = true) @RequestParam String name,
+            @ApiParam(value = "이메일", required = true) @RequestParam String email){
+        // @ApiOperation : 대상 API의 설명을 작성하기 위한 어노테이션
+        // @ApiParam : 매개변수에 대한 설명 및 설정을 위한 어노테이션 > 매개변수 + DTO 클래스 내의 매개변수까지 정의 가능
+
         return name + ", " + email;
     }
 
