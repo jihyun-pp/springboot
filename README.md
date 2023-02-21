@@ -5,4 +5,8 @@
 - MVC, JPA, AOP 기본 + test 코드 작성
 
 
-### 2. 스프링부트 핵심 가이드
+### 2. 스프링부트 핵심 가이드 - guide
+- API 작성 : @RestController 
+- Swagger : API 명세서 작성
+- Logback : 로깅 라이브러리
+- lombok : Getter/Setter Anotation
