@@ -24,7 +24,6 @@ public class ProductServiceImpl implements ProductService {
     public ProductResponseDto getProduct(Long number) {
         Product product = productDAO.selectProduct(number);
 
-        // DTO : client 에 전송할 데이터
         ProductResponseDto productResponseDto = new ProductResponseDto();
         productResponseDto.setNumber(product.getNumber());
         productResponseDto.setName(product.getName());
