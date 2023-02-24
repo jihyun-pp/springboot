@@ -21,7 +21,7 @@ public class SwaggerConfiguration {
     @Bean
     public Docket api(){
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
-                .apis(RequestHandlerSelectors.basePackage("com.springboot.jpa"))
+                .apis(RequestHandlerSelectors.basePackage("com.springboot.guide"))
                 .paths(PathSelectors.any())
                 .build();
     }
