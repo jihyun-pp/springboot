@@ -6,6 +6,9 @@ import com.springboot.guide.data.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 @Component
 public class ProductDAOImpl implements ProductDAO {
 
@@ -30,11 +33,32 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public Product updateProductName(Long number, String name) throws Exception {
-        return null;
+        Optional<Product> selectedProduct = productRepository.findById(number);
+
+        Product updateProduct;
+        if(selectedProduct.isPresent()){
+            Product product = selectedProduct.get();
+
+            // JPA는 update 키워드 사용 X : 영속성 컨텍스트를 활용해 값을 갱신함 > flush()
+            product.setName(name);
+            product.setUpdatedAt(LocalDateTime.now());
+
+            updateProduct = productRepository.save(product);
+        }else{
+            throw new Exception();
+        }
+
+        return updateProduct;
     }
 
     @Override
     public void deleteProduct(Long number) throws Exception {
-
+        Optional<Product> selectedProduct = productRepository.findById(number);
+        if (selectedProduct.isPresent()){
+            Product product = selectedProduct.get();
+            productRepository.delete(product);
+        }else{
+            throw new Exception();
+        }
     }
 }
