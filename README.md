@@ -9,4 +9,9 @@
 - API 작성 : @RestController 
 - Swagger : API 명세서 작성
 - Logback : 로깅 라이브러리
+
+- MariaDB 연동
+- 영속성 컨텍스트(Persistence Context) > EntityManager
+- Spring Data JPA
 - lombok : Getter/Setter Anotation
+
