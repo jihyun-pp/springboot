@@ -13,3 +13,17 @@
 
 3. @DisplayNAme
 테스트 메서드의 이름이 복잡해서 가독성이 떨어질 경우 이 어노테이션을 통해 테스트에 대한 표현을 정의할 수 있다.
+
+
+4. Slice Test 대표 어노테이션
+   - @DataJdbcTest
+   - @DataJpaTest
+   - @DataMongoTest
+   - @DataRedisTest
+   - @JdbcTest
+   - @jooqTest
+   - @JsonTest
+   - @RestClientTEst
+   - @WebFluxTest
+   - @WebMvcTest
+   - @WebServiceClientTest
