@@ -1,8 +1,12 @@
 package com.springboot.guide.data.dto;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class ProductResponseDto {
     private Long number;
     private String name;
