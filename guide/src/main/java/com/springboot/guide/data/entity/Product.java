@@ -5,10 +5,11 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
+//@Getter
+//@Setter
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Table(name="product")
 public class Product {
 
@@ -43,6 +44,7 @@ public class Product {
     private Integer stock;
 
     private LocalDateTime createdAt;
+
     private LocalDateTime updatedAt;
 
 }
