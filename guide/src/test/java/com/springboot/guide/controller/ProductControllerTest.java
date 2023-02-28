@@ -1,5 +1,6 @@
 package com.springboot.guide.controller;
 
+import com.google.gson.Gson;
 import com.springboot.guide.data.dto.ProductDto;
 import com.springboot.guide.data.dto.ProductResponseDto;
 import com.springboot.guide.service.impl.ProductServiceImpl;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -50,6 +52,33 @@ public class ProductControllerTest {
         verify(productService).getProduct(123L);
         // 지정한 메서드가 실행됐는지 검증하는 역할
         // 일반적으로 given()에 정의된 동작과 대응
+    }
+
+    @Test
+    @DisplayName("Product 데이터 생성 테스트")
+    void createProductTest() throws Exception{
+        // Mock 객체에서 특정 메서드가 실행되는 경우 실제 Return을 줄 수 없기 때문에 아래와 같이 가정 사항을 만듦
+        given(productService.saveProduct(new ProductDto("pen", 5000, 2000)))
+                .willReturn(new ProductResponseDto(12315L,"pen", 5000, 2000));
+
+        ProductDto productDto = ProductDto.builder()
+                .name("pen")
+                .price(5000)
+                .stock(2000)
+                .build();
+
+        Gson gson = new Gson();  // googel json parser
+        String content = gson.toJson(productDto);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/product").content(content).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.number").exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.price").exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.stock").exists())
+                .andDo(MockMvcResultHandlers.print());
+
+        verify(productService).saveProduct(new ProductDto("pen", 5000, 2000));
     }
 
 }
