@@ -102,4 +102,26 @@ public class QueryDSLTest {
             System.out.println("----------------");
         }
     }
+
+    // 8.30 JPAQueryFactory 빈 객체를 활용한 테스트 코드
+    @Autowired
+    JPAQueryFactory jpaQueryFactory;
+
+    @Test
+    @DisplayName("jpaQueryFactory 주입 테스트")
+    void queryDSLTest4(){
+        // config/QueryDSLConfiguration.java에 생성해 둔 JPAQueryFactory를 주입받아 사용
+        QProduct qProduct = QProduct.product;
+        List<String> productList = jpaQueryFactory
+                .select(qProduct.name)
+                .from(qProduct)
+                .where(qProduct.name.eq("펜"))
+                .orderBy(qProduct.price.desc())
+                .fetch();
+        for (String product : productList) {
+            System.out.println("----------------");
+            System.out.println("Product Name : " + product);
+            System.out.println("----------------");
+        }
+    }
 }
