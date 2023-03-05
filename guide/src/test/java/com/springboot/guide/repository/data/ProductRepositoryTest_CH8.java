@@ -61,7 +61,7 @@ public class ProductRepositoryTest_CH8 {
         System.out.println("예제 8.20) " + productPage.getContent());
 
         System.out.println(productRepository.findByName("펜", PageRequest.of(0, 2, Sort.by(Sort.Order.asc("price")))));
-        System.out.println(produ트ctRepository.findByName("펜", PageRequest.of(0, 2, Sort.by(Sort.Order.asc("price")))).getContent());
+        System.out.println(productRepository.findByName("펜", PageRequest.of(0, 2, Sort.by(Sort.Order.asc("price")))).getContent());
 
     }
 
