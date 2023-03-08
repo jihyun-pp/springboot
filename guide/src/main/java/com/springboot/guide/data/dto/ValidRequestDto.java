@@ -1,4 +1,4 @@
-package com.springboot.guide.dto;
+package com.springboot.guide.data.dto;
 
 import lombok.*;
 
