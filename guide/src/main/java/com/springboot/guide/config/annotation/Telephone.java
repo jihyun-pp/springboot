@@ -27,5 +27,4 @@ public @interface Telephone {
      *              - groups() : 유효성 검사를 사용하는 그룹으로 설정한다.
      *              - payload() : 사용자가 추가 정보를 위해 전달하는 값이다.
      */
-
 }
