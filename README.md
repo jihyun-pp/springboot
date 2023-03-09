@@ -11,7 +11,6 @@
 - Logback : 로깅 라이브러리
 
 - MariaDB 연동
-- 영속성 컨텍스트(Persistence Context) > EntityManager
+- 영속성 컨텍스트(Persistence Context)
 - Spring Data JPA
-- lombok : Getter/Setter Anotation
-
+- lombok, Entity Annotation
