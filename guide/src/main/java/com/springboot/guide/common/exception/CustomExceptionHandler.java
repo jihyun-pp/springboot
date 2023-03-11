@@ -12,12 +12,18 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+//@RestControllerAdvice(basePackages = "com.springboot.guide")  // 예외를 관리하는 범위를 설정할 수 있음
 @RestControllerAdvice
 public class CustomExceptionHandler {
 
+    /**
+     * @RestControllerAdvice + @ControllerAdvice
+     * Controller, RestController 어노테이션에서 발생하는 예외를 한곳에서 관리하고 처리할 수 있게 하는 기능을 수행한다.
+     */
+
     private final Logger logger = LoggerFactory.getLogger(CustomExceptionHandler.class);
 
-    @ExceptionHandler(value = RuntimeException.class)
+    @ExceptionHandler(value = RuntimeException.class)  // 컨트롤러에서 해당 오류가 발생하면 실행되는 메서드
     public ResponseEntity<Map<String, String>> handleException(RuntimeException e, HttpServletRequest request){
         HttpHeaders responseHeaders = new HttpHeaders();
         HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
@@ -30,7 +36,6 @@ public class CustomExceptionHandler {
         map.put("message", e.getMessage());
 
         return new ResponseEntity<>(map, responseHeaders, httpStatus);
-
     }
 
 
