@@ -30,6 +30,7 @@ public class CustomExceptionHandler {
         map.put("message", e.getMessage());
 
         return new ResponseEntity<>(map, responseHeaders, httpStatus);
+
     }
 
 
