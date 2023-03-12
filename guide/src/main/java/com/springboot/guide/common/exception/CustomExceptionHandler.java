@@ -19,6 +19,8 @@ public class CustomExceptionHandler {
     /**
      * @RestControllerAdvice + @ControllerAdvice
      * Controller, RestController 어노테이션에서 발생하는 예외를 한곳에서 관리하고 처리할 수 있게 하는 기능을 수행한다.
+     * AOP를 적용한 것이다.
+     * 해당 어노테이션 클래스 내의 @ExceptionHandler는 모든 컨트롤러에서 발생하는 예외상황을 잡을 수 있다.
      */
 
     private final Logger logger = LoggerFactory.getLogger(CustomExceptionHandler.class);
