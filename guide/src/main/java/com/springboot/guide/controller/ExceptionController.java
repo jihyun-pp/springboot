@@ -1,5 +1,7 @@
 package com.springboot.guide.controller;
 
+import com.springboot.guide.common.Constants;
+import com.springboot.guide.common.exception.CustomException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -26,20 +28,25 @@ public class ExceptionController {
         throw new RuntimeException("getRuntimeException 메서드 호출");
     }
 
-    @ExceptionHandler(value = RuntimeException.class)
-    public ResponseEntity<Map<String, String>> handelException(RuntimeException e, HttpServletRequest request){
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
-        HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
-
-        logger.error("클래스 내 handleException 호출, {}, {}", request.getRequestURI(), e.getMessage());
-
-        Map<String, String> map = new HashMap<>();
-        map.put("error type", httpStatus.getReasonPhrase());
-        map.put("code", "400");
-        map.put("message", e.getMessage());
-
-        return new ResponseEntity<>(map, responseHeaders, httpStatus);
+    @GetMapping("/custom")
+    public void getCustomException() throws CustomException {
+        throw new CustomException(Constants.ExceptionClass.PRODUCT, HttpStatus.BAD_REQUEST, "getCustomException 메서드 호출");
     }
+
+//    @ExceptionHandler(value = RuntimeException.class)
+//    public ResponseEntity<Map<String, String>> handelException(RuntimeException e, HttpServletRequest request){
+//        HttpHeaders responseHeaders = new HttpHeaders();
+//        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+//        HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
+//
+//        logger.error("클래스 내 handleException 호출, {}, {}", request.getRequestURI(), e.getMessage());
+//
+//        Map<String, String> map = new HashMap<>();
+//        map.put("error type", httpStatus.getReasonPhrase());
+//        map.put("code", "400");
+//        map.put("message", e.getMessage());
+//
+//        return new ResponseEntity<>(map, responseHeaders, httpStatus);
+//    }
 
 }
